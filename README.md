@@ -17,13 +17,13 @@ git clone git@github.com:base234/examboard-react-frontend.git
 cd examboard-react-frontend
 ```
 
-## 2. Installation
+## 3. Installation
 
 ```
 npm install
 ```
 
-## 3. Run
+## 4. Run
 
 ```
 npm run dev
