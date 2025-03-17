@@ -1,10 +1,11 @@
-# Examboard AI (ExGen)
+# Examboard frontend
 
-This is the AI Part of the examboard application.
+This is the frontend of the project.
 
-Backend of the project: (https://github.com/base234/examboard-node-backend)[https://github.com/base234/examboard-node-backend]
+Backend repo project: [http://github.com/base234/examboard-node-backend](http://github.com/base234/examboard-node-backend)
 
-AI Part of the project: (https://github.com/base234/examboard-fastapi-ai)[https://github.com/base234/examboard-fastapi-ai]
+AI repo of project: [http://github.com/base234/examboard-fastapi-ai](http://github.com/base234/examboard-fastapi-ai)
+
 
 ## 1. Download the project to your local machine (SSH)
 ```
