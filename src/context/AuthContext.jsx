@@ -15,6 +15,14 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
+  // Set up axios interceptor for token
+  useEffect(() => {
+    const token = localStorage.getItem("eb-token") || sessionStorage.getItem("eb-token");
+    if (token) {
+      Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+    }
+  }, []);
+
   useEffect(() => {
     fetchUser();
   }, []);
@@ -33,37 +41,59 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (payloadValue) => {
     try {
-      const payload = payloadValue;
-      const response = await Api.post("/auth/login", payload);
+      const response = await Api.post("/auth/login", payloadValue);
+      const { token, data, status, message } = response.data;
 
-      console.log("Response data data user:", response.data.data);
+      if (status === "success") {
+        // Set user data
+        setUser(data);
 
-      setUser(response.data.data);
+        // Store token based on remember me
+        if (payloadValue.data.rememberMe) {
+          localStorage.setItem("eb-token", token);
+          sessionStorage.removeItem("eb-token"); // Clear session storage
+        } else {
+          sessionStorage.setItem("eb-token", token);
+          localStorage.removeItem("eb-token"); // Clear local storage
+        }
 
-      if (payloadValue.data.rememberMe) {
-        localStorage.setItem("eb-token", response.data.token);
+        // Set token in axios defaults
+        Api.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+
+        // Navigate based on role
+        if (data.role === "teacher") {
+          navigate("/dashboard");
+        } else if (data.role === "admin") {
+          navigate("/admin/dashboard");
+        } else if (data.role === "writer") {
+          navigate("/writer/dashboard");
+        }
+
+        return { success: true, message };
       } else {
-        sessionStorage.setItem("eb-token", response.data.token);
-      }
-
-      if (response.data.data.user.role === "teacher") {
-        navigate("/dashboard");
-      }
-
-      if (response.data.data.user.role === "admin") {
-        navigate("/admin/dashboard");
+        return {
+          success: false,
+          message: message || "Invalid credentials"
+        };
       }
     } catch (error) {
-      return error;
+      return {
+        success: false,
+        message: error.response?.data?.message || "Invalid credentials"
+      };
     }
   };
 
-  const logout = () => {
-    localStorage.removeItem("eb-token");
-    sessionStorage.removeItem("eb-token");
-    setUser(null);
-    Api.delete("/auth/logout");
-    navigate("/login"); // Redirect to login page
+  const logout = async () => {
+    try {
+      await Api.delete("/auth/logout");
+    } finally {
+      localStorage.removeItem("eb-token");
+      sessionStorage.removeItem("eb-token");
+      delete Api.defaults.headers.common["Authorization"];
+      setUser(null);
+      navigate("/login");
+    }
   };
 
   const forgotPassword = async (email) => {
@@ -85,21 +115,19 @@ export const AuthProvider = ({ children }) => {
 
   const fetchUser = async () => {
     try {
-      const token =
-        localStorage.getItem("eb-token") || sessionStorage.getItem("eb-token");
-
-        console.log(token);
+      const token = localStorage.getItem("eb-token") || sessionStorage.getItem("eb-token");
 
       if (!token) {
         setIsLoading(false);
         return;
       }
 
-      const response = await Api.get("/me", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const response = await Api.get("/me");
       setUser(response.data.data);
-    } catch {
+    } catch (error) {
+      localStorage.removeItem("eb-token");
+      sessionStorage.removeItem("eb-token");
+      delete Api.defaults.headers.common["Authorization"];
       setUser(null);
     } finally {
       setIsLoading(false);

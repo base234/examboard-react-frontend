@@ -10,15 +10,15 @@ const ProtectedRoute = ({ role, children }) => {
   }
 
   if (role && user.role !== role) {
-    console.log("User role:", user);
-
-    // Redirect to user's dashboard if they try to access an unauthorized role's route
-    if (user.role === "teacher") {
-      return <Navigate to="/dashboard" />;
-    }
-
-    if(user.role === "admin") {
-      return <Navigate to="/admin/dashboard" />;
+    switch(user.role) {
+      case 'teacher':
+        return <Navigate to="/dashboard" />;
+      case 'admin':
+        return <Navigate to="/admin/dashboard" />;
+      case 'writer':
+        return <Navigate to="/writer/dashboard" />;
+      default:
+        return <Navigate to="/dashboard" />;
     }
   }
 

@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import LOGO from "@/assets/logo.png";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "@/context/AuthContext";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default function Login() {
   const { login } = useAuthContext();
@@ -14,7 +15,8 @@ export default function Login() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsLoading((prevIsLoading) => true);
+    setError("");
+    setIsLoading(true);
 
     const payload = {
       data: {
@@ -24,17 +26,16 @@ export default function Login() {
       },
     };
 
-    const response = await login(payload);
-    setIsLoading(false);
-
-    // if (response) {
-    //   setIsLoading(false);
-    //   setError("");
-    //   return;
-    // } else {
-    //   setIsLoading(false);
-    //   setError("Invalid email or password");
-    // }
+    try {
+      const response = await login(payload);
+      if (!response.success) {
+        setError(response.message || "Invalid email or password");
+      }
+    } catch (err) {
+      setError("Something went wrong. Please try again.");
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -52,13 +53,15 @@ export default function Login() {
               <h1 className="font-bold text-2xl tracking-tight">
                 Welcome back 👋
               </h1>
-              <form className="my-4 flex flex-col gap-4">
+              <form className="my-4 flex flex-col gap-4" onSubmit={handleSubmit}>
                 <input
                   type="email"
                   placeholder="Email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="w-full px-3 py-2 text-sm border border-gray-200 hover:border-gray-300 focus:bg-gray-50 focus:border-gray-300 outline-0 rounded-md"
+                  disabled={isLoading}
+                  required
                 />
                 <input
                   type="password"
@@ -66,10 +69,18 @@ export default function Login() {
                   value={password}
                   onChange={(e) => setPassword(e.target.value)}
                   className="w-full px-3 py-2 text-sm border border-gray-200 hover:border-gray-300 focus:bg-gray-50 focus:border-gray-300 outline-0 rounded-md"
+                  disabled={isLoading}
+                  required
                 />
                 <div className="my-2 flex items-center justify-between">
                   <div className="w-1/2 font-medium text-gray-500 flex items-center space-x-2">
-                    <input type="checkbox" id="rememberMe" name="rememberMe" />
+                    <input
+                      type="checkbox"
+                      id="rememberMe"
+                      checked={rememberMe}
+                      onChange={(e) => setRememberMe(e.target.checked)}
+                      disabled={isLoading}
+                    />
                     <label
                       className="text-sm cursor-pointer"
                       htmlFor="rememberMe"
@@ -86,42 +97,43 @@ export default function Login() {
                     </Link>
                   </div>
                 </div>
-                {!isLoading && (
-                  <button
-                    className="w-full font-medium text-sm py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-md cursor-pointer"
-                    onClick={(e) => handleSubmit(e)}
-                  >
-                    Let me in
-                  </button>
-                )}
-                {isLoading && (
-                  <button
-                    className="w-full font-medium text-sm py-3 flex justify-center bg-blue-400 text-white rounded-md"
-                    type="button"
-                    disabled
-                  >
-                    <svg
-                      className="size-5 animate-spin text-white"
-                      xmlns="http://www.w3.org/2000/svg"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle
-                        className="opacity-25"
-                        cx="12"
-                        cy="12"
-                        r="10"
-                        stroke="currentColor"
-                        strokeWidth="4"
-                      ></circle>
-                      <path
-                        className="opacity-75"
-                        fill="currentColor"
-                        d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                      ></path>
-                    </svg>
-                  </button>
-                )}
+
+                <ErrorMessage message={error} />
+
+                <button
+                  type="submit"
+                  disabled={isLoading}
+                  className={`w-full font-medium text-sm py-3 text-white rounded-md cursor-pointer ${
+                    isLoading ? 'bg-blue-400' : 'bg-blue-500 hover:bg-blue-400'
+                  }`}
+                >
+                  {isLoading ? (
+                    <div className="flex justify-center items-center">
+                      <svg
+                        className="size-5 animate-spin text-white"
+                        xmlns="http://www.w3.org/2000/svg"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                      >
+                        <circle
+                          className="opacity-25"
+                          cx="12"
+                          cy="12"
+                          r="10"
+                          stroke="currentColor"
+                          strokeWidth="4"
+                        ></circle>
+                        <path
+                          className="opacity-75"
+                          fill="currentColor"
+                          d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                        ></path>
+                      </svg>
+                    </div>
+                  ) : (
+                    'Let me in'
+                  )}
+                </button>
               </form>
               <p className="text-sm text-center text-gray-600">
                 Don't have an account?{" "}

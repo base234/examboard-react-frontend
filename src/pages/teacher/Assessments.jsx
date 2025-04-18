@@ -8,6 +8,7 @@ import { useFormik } from "formik";
 import Api from "@/api/Api";
 
 import { formatDisplayFromSeconds, generateSerial } from "@/general-helpers";
+import { NavLink } from "react-router-dom";
 
 export default function Assessments() {
   const validate = (values) => {
@@ -182,8 +183,7 @@ export default function Assessments() {
                 </option>
               ))}
             </select>
-            {formik.touched.exam_batch &&
-            formik.errors.exam_batch ? (
+            {formik.touched.exam_batch && formik.errors.exam_batch ? (
               <p className="mt-1 font-medium text-sm text-red-600">
                 {formik.errors.exam_batch}
               </p>
@@ -240,17 +240,55 @@ export default function Assessments() {
             Assessments
           </h2>
 
-          <div className="flex space-x-2">
-            <button
-              className="pl-2 pr-3 py-1.5 font-semibold text-xs md:text-sm text-white bg-gray-700 hover:bg-gray-500 rounded-md cursor-pointer"
-              onClick={() => setShowNewAssessmentModel(true)}
-            >
-              <i className="fa-solid fa-plus fa-fw"></i>{" "}
-              <span>New Assessment</span>
-            </button>
-          </div>
+          {exams.length > 0 && (
+            <div className="flex space-x-2">
+              <button
+                className="pl-2 pr-3 py-1.5 font-semibold text-xs md:text-sm text-white bg-gray-700 hover:bg-gray-500 rounded-md cursor-pointer"
+                onClick={() => setShowNewAssessmentModel(true)}
+              >
+                <i className="fa-solid fa-plus fa-fw"></i>{" "}
+                <span>New Assessment</span>
+              </button>
+            </div>
+          )}
         </div>
       </div>
+
+      {exams.length === 0 && (
+        <div className="my-10 mx-10 p-10 bg-white border border-gray-200 text-center rounded-lg">
+          <p className="text-gray-500">
+            Start by creating your first Assessment
+          </p>
+          <button
+            className="mt-4 mx-auto pl-3 pr-4 pt-1.5 pb-2 font-semibold text-sm text-white bg-gray-600 hover:bg-gray-500 rounded-md cursor-pointer"
+            onClick={() => setShowNewAssessmentModel(true)}
+          >
+            <i className="fa-solid fa-plus fa-fw"></i>{" "}
+            <span>Create New Exam</span>
+          </button>
+        </div>
+      )}
+
+      {exams.length > 0 && (
+        <div className="w-full">
+          <div className="px-2 sm:px-4 lg:px-10 py-4 grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4">
+            {exams.map((exam, index) => (
+              <NavLink
+                key={index}
+                to={`/question-papers/${exam.id}`}
+                className="px-4 pt-3 pb-4 flex flex-col border border-gray-200 hover:border-gray-300 shadow-xs rounded-md group"
+              >
+                <h6 className="font-semibold text-xs text-gray-500">
+                  {exam.code}
+                </h6>
+                <h1 className="font-semibold text-lg text-gray-700 group-hover:underline">
+                  {exam.name}
+                </h1>
+              </NavLink>
+            ))}
+          </div>
+        </div>
+      )}
     </Fragment>
   );
 }

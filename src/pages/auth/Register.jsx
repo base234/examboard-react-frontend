@@ -4,12 +4,15 @@ import { useFormik } from "formik";
 
 import LOGO from "@/assets/logo.png";
 import { useAuthContext } from "@/context/AuthContext";
+import ErrorMessage from "@/components/ErrorMessage";
 
 export default function Register() {
   const { register } = useAuthContext();
 
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
   const [isRegistrationSuccess, setIsRegistrationSuccess] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
 
   const validate = (values) => {
     const errors = {};
@@ -37,7 +40,7 @@ export default function Register() {
     if (!values.password) {
       errors.password = "Required";
     } else if (values.password.length < 8) {
-      errors.password = "Password must be greater than 8 characters";
+      errors.password = "Password must be at least 8 characters";
     }
 
     return errors;
@@ -51,23 +54,24 @@ export default function Register() {
       password: "",
     },
     validate,
+    onSubmit: async (values, { resetForm }) => {
+      setError("");
+      setIsLoading(true);
+      try {
+        const response = await register(values);
+        if (response.status === "success") {
+          setIsRegistrationSuccess(true);
+          resetForm();
+        } else {
+          setError(response.message || "Registration failed. Please try again.");
+        }
+      } catch (err) {
+        setError(err.message || "Something went wrong. Please try again.");
+      } finally {
+        setIsLoading(false);
+      }
+    },
   });
-
-  const createAccount = async (e) => {
-    e.preventDefault();
-    setIsLoading((prevIsLoading) => true);
-
-    const response = await register(formik.values);
-
-    if (!response) {
-      console.log("Error creating account");
-      setIsLoading((prevIsLoading) => false);
-      return;
-    }
-
-    setIsLoading((prevIsLoading) => false);
-    setIsRegistrationSuccess((prevRegistrationSuccess) => true);
-  };
 
   return (
     <div className="h-screen flex flex-col">
@@ -88,7 +92,7 @@ export default function Register() {
                   </h1>
                   <form
                     className="my-4 flex flex-col space-y-4"
-                    onSubmit={(e) => createAccount(e)}
+                    onSubmit={formik.handleSubmit}
                   >
                     <div className="grid grid-cols-2 gap-4">
                       <div className="flex flex-col">
@@ -166,22 +170,33 @@ export default function Register() {
                       <label className="text-sm font-normal" htmlFor="password">
                         Password <span className="text-red-500">*</span>
                       </label>
-                      <input
-                        id="password"
-                        name="password"
-                        type="password"
-                        placeholder="Password"
-                        className="w-full mt-2 px-3 py-2 text-sm border border-gray-200 hover:border-gray-300 focus:bg-gray-50 focus:border-gray-300 outline-0 rounded-md"
-                        onChange={formik.handleChange}
-                        onBlur={formik.handleBlur}
-                        value={formik.values.password}
-                      />
+                      <div className="relative">
+                        <input
+                          id="password"
+                          name="password"
+                          type={showPassword ? "text" : "password"}
+                          placeholder="Password"
+                          className="w-full mt-2 px-3 py-2 text-sm border border-gray-200 hover:border-gray-300 focus:bg-gray-50 focus:border-gray-300 outline-0 rounded-md"
+                          onChange={formik.handleChange}
+                          onBlur={formik.handleBlur}
+                          value={formik.values.password}
+                        />
+                        <button
+                          type="button"
+                          className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                          onClick={() => setShowPassword(!showPassword)}
+                        >
+                          <i className={`fa-solid ${showPassword ? 'fa-eye-slash' : 'fa-eye'}`}></i>
+                        </button>
+                      </div>
                       {formik.touched.password && formik.errors.password ? (
                         <p className="mt-2 text-sm text-red-500">
                           {formik.errors.password}
                         </p>
                       ) : null}
                     </div>
+
+                    <ErrorMessage message={error} />
 
                     <div className="mb-4 py-4 border-y border-dashed border-gray-300">
                       <p className="text-xs text-gray-600 leading-5">
@@ -205,42 +220,40 @@ export default function Register() {
                       </p>
                     </div>
 
-                    {!isLoading && (
-                      <button
-                        type="submit"
-                        className="w-full font-medium text-sm py-3 bg-blue-500 hover:bg-blue-400 text-white rounded-md cursor-pointer"
-                      >
-                        Create my account
-                      </button>
-                    )}
-                    {isLoading && (
-                      <button
-                        className="w-full font-medium text-sm py-3 flex justify-center bg-blue-400 text-white rounded-md"
-                        type="button"
-                        disabled
-                      >
-                        <svg
-                          className="size-5 animate-spin text-white"
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                        >
-                          <circle
-                            className="opacity-25"
-                            cx="12"
-                            cy="12"
-                            r="10"
-                            stroke="currentColor"
-                            strokeWidth="4"
-                          ></circle>
-                          <path
-                            className="opacity-75"
-                            fill="currentColor"
-                            d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
-                          ></path>
-                        </svg>
-                      </button>
-                    )}
+                    <button
+                      type="submit"
+                      disabled={isLoading}
+                      className={`w-full font-medium text-sm py-3 text-white rounded-md cursor-pointer ${
+                        isLoading ? 'bg-blue-400' : 'bg-blue-500 hover:bg-blue-400'
+                      }`}
+                    >
+                      {isLoading ? (
+                        <div className="flex justify-center items-center">
+                          <svg
+                            className="size-5 animate-spin text-white"
+                            xmlns="http://www.w3.org/2000/svg"
+                            fill="none"
+                            viewBox="0 0 24 24"
+                          >
+                            <circle
+                              className="opacity-25"
+                              cx="12"
+                              cy="12"
+                              r="10"
+                              stroke="currentColor"
+                              strokeWidth="4"
+                            ></circle>
+                            <path
+                              className="opacity-75"
+                              fill="currentColor"
+                              d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
+                            ></path>
+                          </svg>
+                        </div>
+                      ) : (
+                        'Create my account'
+                      )}
+                    </button>
                   </form>
                   <p className="text-sm text-center text-gray-600">
                     Already have an account?{" "}
