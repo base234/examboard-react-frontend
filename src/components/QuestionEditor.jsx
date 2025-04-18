@@ -197,7 +197,7 @@ const ResizableImage = Image.extend({
   },
 });
 
-const RichTextEditor = ({ editorContent = "", setPlaceholder = "Start typing...", onUpdate = () => {} }) => {
+const QuestionEditor = ({ editorContent = "", setPlaceholder = "Start typing...", onUpdate = () => {} }) => {
   const [isEditing, setIsEditing] = useState(true);
   const [htmlContent, setHtmlContent] = useState("");
 
@@ -478,8 +478,8 @@ const RichTextEditor = ({ editorContent = "", setPlaceholder = "Start typing..."
   };
 
   return (
-    <div className="w-full border border-gray-200 rounded-md">
-      <div className="flex flex-col">
+    <div className="w-full">
+      <div className="sticky top-0 z-10 bg-white flex flex-col">
         <div className=" py-1.5 px-2 border-b border-gray-200 flex flex-wrap items-center justify-between gap-1">
           <div className="flex items-center gap-1">
             {/* Heading dropdown */}
@@ -971,7 +971,7 @@ const RichTextEditor = ({ editorContent = "", setPlaceholder = "Start typing..."
         {isEditing ? (
           <EditorContent
             editor={editor}
-            className="w-full prose prose-sm max-w-full min-h-[300px]"
+            className="w-full pr-10 md:pr-16 lg:pr-20 pb-10 prose max-w-full"
           />
         ) : (
           <textarea
@@ -988,4 +988,4 @@ const RichTextEditor = ({ editorContent = "", setPlaceholder = "Start typing..."
   );
 };
 
-export default RichTextEditor;
+export default QuestionEditor;

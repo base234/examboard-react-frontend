@@ -11,7 +11,11 @@ import Batch from "@/pages/teacher/Batches/Batch.jsx";
 
 import QuestionBank from "@/pages/teacher/QuestionBank.jsx";
 import MultipleChoiceQuestion from "@/pages/teacher/QuestionBank/MultipleChoiceQuestion.jsx";
-import PaperBuilder from "@/pages/teacher/PaperBuilder.jsx";
+import QuestionPapers from "@/pages/teacher/QuestionPapers.jsx";
+import QuestionPaper from "@/pages/teacher/QuestionPapers/QuestionPaper.jsx";
+
+import Assessments from "@/pages/teacher/Assessments.jsx";
+import Assessment from "@/pages/teacher/Assessments/Assessment.jsx";
 
 import ProtectedRoute from "@/ProtectedRoute";
 
@@ -56,18 +60,36 @@ const TeacherRoutes = [
                 element: <MultipleChoiceQuestion />,
               },
               // {
-              //   path: "/question-bank/mcq/:id",
-              //   element: <MultipleChoiceQuestion />,
-              // },
-              // {
               //   path: "/question-bank/maq/new",
               //   element: <MultipleAnswerQuestion />
               // }
             ],
           },
           {
-            path: "/paper-builder",
-            element: <PaperBuilder />,
+            path: "/question-papers",
+            children: [
+              {
+                path: "/question-papers",
+                element: <QuestionPapers />,
+              },
+              {
+                path: "/question-papers/:id",
+                element: <QuestionPaper />,
+              },
+            ],
+          },
+          {
+            path: "/assessments",
+            children: [
+              {
+                path: "/assessments",
+                element: <Assessments />,
+              },
+              {
+                path: "/assessments/:id",
+                element: <Assessment />,
+              },
+            ],
           },
         ],
       },

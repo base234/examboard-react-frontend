@@ -51,6 +51,10 @@ export default function SmartModal({
       start: "scale-105",
       end: "scale-100",
     },
+    bottom: {
+      start: "bottom-0",
+      end: "bottom-20",
+    },
   };
 
   const handleClose = (e) => {

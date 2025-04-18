@@ -53,7 +53,7 @@ export default function TeacherIndex() {
             </h1>
           </div>
           <button
-            className={`px-5 py-3 text-gray-500 hover:text-white hover:bg-gray-500 cursor-pointer`}
+            className={`max-w-14 w-full py-3 text-gray-500 hover:text-white hover:bg-gray-500 cursor-pointer`}
             onClick={() =>
               setIsSidebarOpen((prevIsSidebarOpen) => !prevIsSidebarOpen)
             }
@@ -120,9 +120,9 @@ export default function TeacherIndex() {
               </span>
             </NavLink>
             <NavLink
-              to="/paper-builder"
+              to="/question-papers"
               className={`${
-                location.pathname === "/paper-builder"
+                location.pathname === "/question-papers"
                   ? "bg-gray-50 text-gray-800 border-gray-200 cursor-default"
                   : "text-gray-500 hover:text-gray-800 hover:bg-gray-50 border-transparent cursor-pointer"
               }
@@ -130,7 +130,7 @@ export default function TeacherIndex() {
             >
               <i className="uil uil-file-question-alt text-xl"></i>
               <span className={`text-sm ${isSidebarOpen ? "" : "hidden"}`}>
-                Paper Builder
+                Question Paper
               </span>
             </NavLink>
             <NavLink
@@ -156,7 +156,7 @@ export default function TeacherIndex() {
               }
               py-1 px-2 font-medium border rounded-lg flex items-center space-x-2`}
             >
-              <i className="uil uil-chart-pie text-2xl"></i>
+              <i className="uil uil-chart-pie text-xl"></i>
               <span className={`text-sm ${isSidebarOpen ? "" : "hidden"}`}>
                 Reports
               </span>
@@ -285,6 +285,18 @@ export default function TeacherIndex() {
               <span className="text-xs">Dashboard</span>
             </NavLink>
             <NavLink
+              to="/students"
+              className={`${
+                location.pathname === "/students"
+                  ? "bg-gray-100 text-gray-900 border-gray-200 cursor-default"
+                  : "text-gray-500 hover:text-gray-800 hover:bg-gray-50 border-transparent cursor-pointer"
+              }
+              py-1 px-4 font-medium border-y flex items-center space-x-2`}
+            >
+              <i className="uil uil-users-alt text-xl"></i>
+              <span className="text-xs">Students</span>
+            </NavLink>
+            <NavLink
               to="/batches"
               className={`${
                 location.pathname === "/batches"
@@ -309,16 +321,16 @@ export default function TeacherIndex() {
               <span className="text-xs">Question Bank</span>
             </NavLink>
             <NavLink
-              to="/paper-builder"
+              to="/question-papers"
               className={`${
-                location.pathname === "/paper-builder"
+                location.pathname === "/question-papers"
                   ? "bg-gray-100 text-gray-900 border-gray-200 cursor-default"
                   : "text-gray-500 hover:text-gray-800 hover:bg-gray-50 border-transparent cursor-pointer"
               }
               py-1 px-4 font-medium border-y flex items-center space-x-2`}
             >
               <i className="uil uil-file-question-alt text-xl"></i>
-              <span className="text-xs">Paper Builder</span>
+              <span className="text-xs">Question Paper</span>
             </NavLink>
             <NavLink
               to="/assessments"
@@ -350,10 +362,13 @@ export default function TeacherIndex() {
           v1.0 &copy; {import.meta.env.VITE_APP_NAME} 2025
         </p>
       </div>
-      <div
+      {/* <div
         className={`w-full ${
           isSidebarOpen ? "md:w-[calc(100%-260px)]" : "md:w-[calc(100%-50px)]"
-        } h-full overflow-y-auto bg-gray-50`}
+        } h-full overflow-y-auto`}
+      > */}
+      <div
+        className={`w-full h-full overflow-y-auto`}
       >
         <Outlet context={{ setIsSidebarOpen }} />
       </div>

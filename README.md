@@ -1,4 +1,4 @@
-# Examboard frontend
+# Examboard
 
 This is the frontend of the project.
 
@@ -7,23 +7,23 @@ Backend repo project: [http://github.com/base234/examboard-node-backend](http://
 AI repo of project: [http://github.com/base234/examboard-fastapi-ai](http://github.com/base234/examboard-fastapi-ai)
 
 
-## 1. Download the project to your local machine (SSH)
+## 1. Clone the repo (SSH)
 ```
 git clone git@github.com:base234/examboard-react-frontend.git
 ```
 
-## 2. Navigate to the project directory
+## 2. Go to project directory
 ```
 cd examboard-react-frontend
 ```
 
-## 3. Installation
+## 3. Installing packages
 
 ```
 npm install
 ```
 
-## 4. Run
+## 4. Running the project
 
 ```
 npm run dev

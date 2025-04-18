@@ -4,6 +4,7 @@ import MobileNavbar from "@/components/customer/MobileNavbar";
 import SmartModal from "@/components/SmartModal";
 
 import Api from "@/api/Api.js";
+import { NavLink } from "react-router-dom";
 
 export default function Students() {
   const [showAddNewStudentModal, setShowAddNewStudentModal] = useState(false);
@@ -112,61 +113,90 @@ export default function Students() {
         </div>
       </SmartModal>
 
-      <MobileNavbar />
-      <div className="mt-2 mb-20 px-2">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex items-center justify-between">
-            <h2 className="text-2xl font-bold tracking-tight">Students</h2>
+        <div className="sticky top-0 flex flex-col">
+          <MobileNavbar />
+          <div className="px-2 sm:px-4 lg:px-10 py-2 bg-white border-b border-gray-200 shadow-xs flex items-center justify-between">
+            <h2 className="text-lg md:text-2xl font-bold tracking-tight">
+              Students
+            </h2>
             {students.length > 0 && (
               <button
-                className="px-4 pt-2 pb-2.5 font-semibold text-sm text-white bg-gray-700 hover:bg-gray-500 rounded-md cursor-pointer"
+                className="px-4 py-1.5 font-semibold text-xs md:text-sm text-white bg-gray-700 hover:bg-gray-500 rounded-md cursor-pointer"
                 onClick={() => setShowAddNewStudentModal(true)}
               >
                 <i className="fa-solid fa-user-plus fa-fw"></i>{" "}
-                <span>Add New</span>
+                <span className="pr-1">New</span>
               </button>
             )}
           </div>
-
-          {students.length === 0 && (
-            <div className="w-full mt-6 p-10 bg-white border border-gray-200 text-center rounded-lg">
-              <p className="text-gray-500">Start by adding students</p>
-              <button
-                className="mt-4 mx-auto pl-3 pr-4 pt-1.5 pb-2 font-semibold text-sm text-white bg-gray-600 hover:bg-gray-500 rounded-md cursor-pointer"
-                onClick={() => setShowAddNewStudentModal(true)}
-              >
-                <i className="fa-solid fa-plus fa-fw"></i>{" "}
-                <span>New Student</span>
+          <div className="px-2 sm:px-4 lg:px-10 py-2 bg-white flex items-center justify-between">
+            <div className="flex space-x-2">
+              <button className="text-sm text-gray-500 hover:text-gray-800 hover:bg-gray-100 cursor-pointer flex items-center">
+                <i className="fa-solid fa-filter"></i>
+                <span className="mx-2 underline underline-offset-4 decoration-dashed">
+                  Filter
+                </span>
               </button>
             </div>
-          )}
-
-          {students.length > 0 && (
-            <div className="w-full mt-6 p-4 bg-white border border-gray-200 rounded-lg">
-              {students.map((student, index) => (
-                <Fragment key={student.id}>
-                  <div className="flex justify-between items-start">
-                    <div className="flex items-start space-x-2">
-                      <p>{index + 1}.</p>
-                      <div>
-                        <h6 className="font-medium text-gray-600">
-                          {student.full_name}
-                        </h6>
-                        <p className="mt-1 text-sm text-gray-400">
-                          {student.email}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                  {students.length !== index + 1 && (
-                    <hr className="my-2 border-gray-200" />
-                  )}
-                </Fragment>
-              ))}
+            <div className="flex items-center border border-gray-200 rounded-md group hover:border-gray-300 focus-within:border-gray-400 focus-within:hover:border-gray-400">
+              <label htmlFor="search-student" className="pl-2">
+                <i className="fa-solid fa-magnifying-glass fa-fw text-gray-300"></i>
+              </label>
+              <input
+                id="search-student"
+                type="text"
+                className="w-40 lg:w-60 py-1.5 px-2 text-sm text-gray-600 rounded-md outline-none"
+                placeholder="Search Student..."
+              />
             </div>
-          )}
+          </div>
+          <div className="px-2 sm:px-4 lg:px-10 py-2 font-semibold text-xs md:text-sm text-left text-gray-400 bg-gray-50 border-y border-gray-200 grid grid-cols-12 gap-2">
+            <div className="col-span-1">#</div>
+            <div className="col-span-2">ID</div>
+            <div className="col-span-3">NAME</div>
+            <div className="col-span-3">EMAIL</div>
+            <div className="col-span-3"></div>
+          </div>
         </div>
-      </div>
+
+        {students.length === 0 && (
+          <div className="w-full mx-4 mt-6 p-10 bg-white border border-gray-200 text-center rounded-lg">
+            <p className="text-gray-500">Start by adding students</p>
+            <button
+              className="mt-4 mx-auto pl-3 pr-4 pt-1.5 pb-2 font-semibold text-sm text-white bg-gray-600 hover:bg-gray-500 rounded-md cursor-pointer"
+              onClick={() => setShowAddNewStudentModal(true)}
+            >
+              <i className="fa-solid fa-plus fa-fw"></i>{" "}
+              <span>New Student</span>
+            </button>
+          </div>
+        )}
+
+        {students.length > 0 && (
+          <div className="w-full">
+            {students.map((student, index) => (
+              <div
+                key={index}
+                className="px-2 sm:px-4 lg:px-10 text-xs md:text-sm text-left text-gray-600 border-b border-gray-200 hover:bg-yellow-50 grid grid-cols-12 gap-2"
+              >
+                <div className="col-span-1 py-2 font-semibold">{index + 1}</div>
+                <div className="col-span-2 py-2">STU4567</div>
+                <NavLink
+                  to={`/students/id`}
+                  className="col-span-3 py-2 hover:underline decoration-gray-400/60 underline-offset-4"
+                >
+                  {student.full_name}
+                </NavLink>
+                <div className="col-span-3 py-2">{student.email}</div>
+                <div className="col-span-3 py-2 flex items-center justify-end space-x-2">
+                  <button className="text-gray-300 hover:text-gray-500 cursor-pointer">
+                    <i className="fa-solid fa-edit fa-fw"></i>
+                  </button>
+                </div>
+              </div>
+            ))}
+          </div>
+        )}
     </Fragment>
   );
 }
