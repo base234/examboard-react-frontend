@@ -4,7 +4,6 @@ This is the frontend of the project.
 
 Backend repo project: [http://github.com/base234/examboard-node-backend](http://github.com/base234/examboard-node-backend)
 
-AI repo of project: [http://github.com/base234/examboard-fastapi-ai](http://github.com/base234/examboard-fastapi-ai)
 
 
 ## 1. Clone the repo (SSH)
