@@ -3,7 +3,7 @@ import AuthRoutes from "./routes/auth.Routes";
 import TeacherRoutes from "./routes/teacher.Routes";
 import WriterRoutes from "./routes/writer.Routes";
 import AdminRoutes from "./routes/admin.Routes";
-
+import ExamRoutes from "./routes/exam.Routes";
 import Error404 from "./pages/Error404";
 
 const routes = [
@@ -13,7 +13,7 @@ const routes = [
   // Auth Routes (Accessible only if not logged in)
   ...AuthRoutes,
 
-  // Customer Routes (Accessible only if role is "user")
+  // Teacher Routes (Accessible only if role is "user")
   ...TeacherRoutes,
 
   // Writer Routes (Accessible only if role is "user")
@@ -21,9 +21,14 @@ const routes = [
 
   // Admin Routes (Accessible only if role is "admin")
   ...AdminRoutes,
+
+  // Exam Routes (Accessible for exam candidates)
+  ...ExamRoutes,
+
+  // 404 Route
   {
     path: "*",
-    children: [{ path: "*", element: <Error404 /> }],
+    element: <Error404 />,
   },
 ];
 

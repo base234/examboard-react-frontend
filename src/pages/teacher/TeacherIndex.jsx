@@ -144,7 +144,7 @@ export default function TeacherIndex() {
             >
               <i className="uil uil-clipboard-alt text-xl"></i>
               <span className={`text-sm ${isSidebarOpen ? "" : "hidden"}`}>
-                Assessments
+                Assessment
               </span>
             </NavLink>
             <NavLink
@@ -342,7 +342,7 @@ export default function TeacherIndex() {
               py-1 px-4 font-medium border-y flex items-center space-x-2`}
             >
               <i className="uil uil-clipboard-alt text-xl"></i>
-              <span className="text-xs">Assessments</span>
+              <span className="text-xs">Assessment</span>
             </NavLink>
             <NavLink
               to="/reports"

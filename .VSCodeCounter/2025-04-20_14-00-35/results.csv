@@ -1,0 +1,59 @@
+"filename", "language", "JSON", "JavaScript", "HTML", "XML", "Markdown", "JavaScript JSX", "CSS", "comment", "blank", "total"
+"c:\projects\examboard\frontend-react\README.md", "Markdown", 0, 0, 0, 0, 21, 0, 0, 0, 13, 34
+"c:\projects\examboard\frontend-react\eslint.config.js", "JavaScript", 0, 37, 0, 0, 0, 0, 0, 0, 2, 39
+"c:\projects\examboard\frontend-react\index.html", "HTML", 0, 0, 17, 0, 0, 0, 0, 0, 1, 18
+"c:\projects\examboard\frontend-react\package-lock.json", "JSON", 6353, 0, 0, 0, 0, 0, 0, 0, 1, 6354
+"c:\projects\examboard\frontend-react\package.json", "JSON", 61, 0, 0, 0, 0, 0, 0, 0, 1, 62
+"c:\projects\examboard\frontend-react\public\vite.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"c:\projects\examboard\frontend-react\src\AppRouter.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 7, 0, 0, 3, 10
+"c:\projects\examboard\frontend-react\src\ProtectedRoute.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 6, 29
+"c:\projects\examboard\frontend-react\src\STEMEditorDoc.md", "Markdown", 0, 0, 0, 0, 28, 0, 0, 0, 22, 50
+"c:\projects\examboard\frontend-react\src\api\Api.js", "JavaScript", 0, 30, 0, 0, 0, 0, 0, 6, 6, 42
+"c:\projects\examboard\frontend-react\src\assets\react.svg", "XML", 0, 0, 0, 1, 0, 0, 0, 0, 1, 2
+"c:\projects\examboard\frontend-react\src\color-palette.css", "CSS", 0, 0, 0, 0, 0, 0, 23, 0, 3, 26
+"c:\projects\examboard\frontend-react\src\components\ErrorMessage.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 1, 2, 9
+"c:\projects\examboard\frontend-react\src\components\Loader.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 23, 0, 0, 4, 27
+"c:\projects\examboard\frontend-react\src\components\QuestionEditor.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 887, 0, 44, 61, 992
+"c:\projects\examboard\frontend-react\src\components\QuestionRenderer.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 29, 0, 1, 8, 38
+"c:\projects\examboard\frontend-react\src\components\RichTextEditor.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 887, 0, 44, 61, 992
+"c:\projects\examboard\frontend-react\src\components\SmartModal.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 150, 0, 2, 13, 165
+"c:\projects\examboard\frontend-react\src\components\admin\MobileNavbar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 92, 0, 0, 7, 99
+"c:\projects\examboard\frontend-react\src\components\customer\MobileNavbar.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 96, 0, 0, 7, 103
+"c:\projects\examboard\frontend-react\src\context\AuthContext.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 132, 0, 5, 22, 159
+"c:\projects\examboard\frontend-react\src\general-helpers.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 41, 0, 0, 11, 52
+"c:\projects\examboard\frontend-react\src\index.css", "CSS", 0, 0, 0, 0, 0, 0, 47, 1, 8, 56
+"c:\projects\examboard\frontend-react\src\layouts\AdminLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 13, 0, 0, 3, 16
+"c:\projects\examboard\frontend-react\src\layouts\AuthLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 5, 25
+"c:\projects\examboard\frontend-react\src\layouts\GuestLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 20, 0, 0, 5, 25
+"c:\projects\examboard\frontend-react\src\layouts\TeacherLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 4, 10
+"c:\projects\examboard\frontend-react\src\layouts\WriterLayout.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 4, 10
+"c:\projects\examboard\frontend-react\src\main.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 14, 0, 0, 2, 16
+"c:\projects\examboard\frontend-react\src\pages\Blogs.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"c:\projects\examboard\frontend-react\src\pages\Error404.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"c:\projects\examboard\frontend-react\src\pages\admin\AdminIndex.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 455, 0, 1, 8, 464
+"c:\projects\examboard\frontend-react\src\pages\admin\adminIndex\Dashboard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 139, 0, 0, 19, 158
+"c:\projects\examboard\frontend-react\src\pages\auth\ForgotPassword.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 54, 0, 0, 3, 57
+"c:\projects\examboard\frontend-react\src\pages\auth\Login.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 145, 0, 0, 9, 154
+"c:\projects\examboard\frontend-react\src\pages\auth\Register.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 280, 0, 0, 16, 296
+"c:\projects\examboard\frontend-react\src\pages\auth\ResetPassword.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"c:\projects\examboard\frontend-react\src\pages\auth\WriterRegister.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"c:\projects\examboard\frontend-react\src\pages\teacher\Batches.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 319, 0, 0, 31, 350
+"c:\projects\examboard\frontend-react\src\pages\teacher\Batches\Batch.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 544, 0, 2, 51, 597
+"c:\projects\examboard\frontend-react\src\pages\teacher\Dashboard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 48, 0, 0, 5, 53
+"c:\projects\examboard\frontend-react\src\pages\teacher\Exams.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 585, 0, 0, 42, 627
+"c:\projects\examboard\frontend-react\src\pages\teacher\Exams\Exam.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"c:\projects\examboard\frontend-react\src\pages\teacher\QuestionBank.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 589, 0, 0, 41, 630
+"c:\projects\examboard\frontend-react\src\pages\teacher\QuestionBank\MultipleChoiceQuestion.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 391, 0, 2, 30, 423
+"c:\projects\examboard\frontend-react\src\pages\teacher\QuestionPapers.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 811, 0, 9, 65, 885
+"c:\projects\examboard\frontend-react\src\pages\teacher\QuestionPapers\QuestionPaper.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 375, 0, 0, 20, 395
+"c:\projects\examboard\frontend-react\src\pages\teacher\Students.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 188, 0, 0, 15, 203
+"c:\projects\examboard\frontend-react\src\pages\teacher\TeacherIndex.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 356, 0, 14, 8, 378
+"c:\projects\examboard\frontend-react\src\pages\writer\Dashboard.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 6, 0, 0, 2, 8
+"c:\projects\examboard\frontend-react\src\router.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 18, 0, 5, 8, 31
+"c:\projects\examboard\frontend-react\src\routes\admin.Routes.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 28, 0, 1, 7, 36
+"c:\projects\examboard\frontend-react\src\routes\auth.Routes.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 34, 0, 1, 5, 40
+"c:\projects\examboard\frontend-react\src\routes\guest.Routes.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 16, 0, 6, 4, 26
+"c:\projects\examboard\frontend-react\src\routes\teacher.Routes.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 87, 0, 5, 9, 101
+"c:\projects\examboard\frontend-react\src\routes\writer.Routes.jsx", "JavaScript JSX", 0, 0, 0, 0, 0, 26, 0, 1, 6, 33
+"c:\projects\examboard\frontend-react\vite.config.js", "JavaScript", 0, 22, 0, 0, 0, 0, 0, 1, 3, 26
+"Total", "-", 6414, 89, 17, 2, 49, 7976, 70, 152, 704, 15473

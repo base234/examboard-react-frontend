@@ -127,7 +127,7 @@ export default function SmartModal({
           style={scrollable ? {} : { marginTop: "0rem" }}
         >
           {showHeader && (
-            <div className="sticky top-0 bg-white z-10 flex justify-between items-center px-6 py-2.5 border-b border-gray-200 rounded-t-lg">
+            <div className="sticky top-0 bg-white z-0 flex justify-between items-center px-6 py-2.5 border-b border-gray-200 rounded-t-lg">
               <h6 className="text-lg font-semibold">{header}</h6>
               <button
                 onClick={() => {
